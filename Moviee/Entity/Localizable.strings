@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  Moviee
+
+  Created by NomoteteS on 27.01.2023.
+  
+*/
+
+// MARK: - Text
+"addFavMovie" = "Add Your Favourite Movie";
+
+// MARK: - Button
+"addMovie" = "Add Movie";
+"goHome" = "Go to home page";
+"addTakeImage" = "Add/Take Image";
+"takePhoto" = "Take Photo";
+"addImageGallery" = "Add Image From Gallery";
+
+// MARK: - TextField
+"movieName" = "What is the movie name ?";
+"price" = "Price ?";
