@@ -13,15 +13,10 @@ struct AddTakeImageStyle: ButtonStyle {
             configuration.label
                 .background {
                         RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(ColorHelper.customOrange.rawValue),lineWidth: 2)
+                        .stroke(Color(ColorHelper.customOrange.rawValue),
+                                lineWidth: 2)
                         .frame(width: UIScreen.main.bounds.width * 0.75,
                                height: UIScreen.main.bounds.height * 0.46)
-                        .background {
-                            Image(ImageHelper.Views.noneSelectedImage.rawValue)
-                                .resizable()
-                            Color(ColorHelper.customDark.rawValue)
-                                .opacity(0.5)
-                        }
             }
         }
         .frame(width: UIScreen.main.bounds.width * 0.75,

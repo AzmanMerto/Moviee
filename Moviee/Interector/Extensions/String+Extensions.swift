@@ -1,5 +1,5 @@
 //
-//  String.swift
+//  String+Extensions.swift
 //  Moviee
 //
 //  Created by NomoteteS on 28.01.2023.
@@ -13,4 +13,6 @@ extension String {
     func locale() -> LocalizedStringKey {
         return LocalizedStringKey(self)
     }
+    
 }
+

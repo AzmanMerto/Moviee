@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct AddMovieButton: View {
+    var action : () -> Void
     var body: some View {
                 Button {
-                    // action
+                    action()
                 } label: {
                     HStack {
                         Spacer()
@@ -40,7 +41,9 @@ struct AddMovieButton_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             ViewsBackground()
-            AddMovieButton()
+            AddMovieButton {
+                
+            }
         }
     }
 }

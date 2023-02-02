@@ -17,7 +17,7 @@ struct ImagePickerStyle: ButtonStyle {
                 StyleHelper(cornerRadius: 10,
                             strokeColor: ColorHelper.customOrange.rawValue,
                             strokeLineWidth: 2,
-                            frameWidth: UIScreen.main.bounds.width * 0.49 ,
+                            frameWidth: UIScreen.main.bounds.width * 0.8 ,
                             frameHeight: UIScreen.main.bounds.height * 0.07)
             }
     }

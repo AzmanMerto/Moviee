@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct GoHomeButton: View {
+
+    @EnvironmentObject var appRouter: MovieeRouter
+
     var body: some View {
         
         Button {
-            
+            appRouter.state = .home
         } label: {
             HStack {
                 Text(TextHelper.Button.goHome.rawValue.locale())

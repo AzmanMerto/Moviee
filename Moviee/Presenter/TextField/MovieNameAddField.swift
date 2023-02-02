@@ -8,19 +8,29 @@
 import SwiftUI
 
 struct MovieNameAddField: View {
+    
+    /// String value
     @Binding var movieField : String
+    
+    /// if pressed field its gonna be activated
     @State var tabbedTextField = false
-
+    
+    /// isPressed checking boolean
+    @State var textEmpty = false
+    
+    /// For responsive view 
     var frameWidth : CGFloat
     var frameHeight : CGFloat
+    
     var body: some View {
         ZStack {
-            TextField("", text: $movieField)
+            TextField("", text: $movieField.limit(32))
                 .font(.system(size: 12))
                 .textFieldStyle(MovieNameAddStyle(frameWidth: frameWidth,
                                                   frameHeight: frameHeight))
+                .frame(width: UIScreen.main.bounds.width * 0.44, height: UIScreen.main.bounds.height * 0.04)
             
-            Text(TextHelper.TextField.movieName.rawValue.locale())
+            Text(textEmpty ? "Empty" : TextHelper.TextField.movieName.rawValue.locale())
                 .font(.footnote)
                 .fontWeight(.medium)
                 .foregroundColor(Color(ColorHelper.customRed.rawValue))

@@ -15,19 +15,23 @@ struct ImagePickerButton: View {
                 Button {
                 action()
                 } label: {
-                    HStack {
+                    HStack(spacing: 20) {
                         Image(systemName: image)
-                            .font(.system(size: UIScreen.main.bounds.height * 0.02))
+                            .font(.system(size: UIScreen.main.bounds.height * 0.03))
+                            .frame(width: UIScreen.main.bounds.width * 0.03)
                             .padding()
+                        
+                        Spacer()
                         
                         Text(text.locale())
                             .font(.system(size: UIScreen.main.bounds.height * 0.02,
                                           weight: .heavy,
                                           design: .default))
+                            .frame(width: UIScreen.main.bounds.width * 0.5)
+                        
                     }
-                    .frame(width: UIScreen.main.bounds.width * 0.49)
+                    .frame(width: UIScreen.main.bounds.width * 0.50)
                     .multilineTextAlignment(.center)
-                    .padding(.trailing)
                     .foregroundColor(Color(ColorHelper.customRed.rawValue))
                 }.buttonStyle(ImagePickerStyle())
 

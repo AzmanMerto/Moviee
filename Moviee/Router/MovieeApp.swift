@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct MovieeApp: App {
+    @StateObject private var dataManager = DataManager()
+    
     var body: some Scene {
         WindowGroup {
-            AddMovie()
+             NavigationView{
+                 MovieeViewsRouter()
+                     .environment(\.managedObjectContext, dataManager.persistentContainer.viewContext)
+            }
         }
     }
 }
