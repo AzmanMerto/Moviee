@@ -10,13 +10,9 @@ import SwiftUI
 struct MovieNameAddField: View {
     
     /// String value
-    @Binding var movieField : String
+    @StateObject var vmm : ViewModelManager = .init(UIImage())
+
     
-    /// if pressed field its gonna be activated
-    @State var tabbedTextField = false
-    
-    /// isPressed checking boolean
-    @State var textEmpty = false
     
     /// For responsive view 
     var frameWidth : CGFloat
@@ -24,21 +20,21 @@ struct MovieNameAddField: View {
     
     var body: some View {
         ZStack {
-            TextField("", text: $movieField.limit(32))
+            TextField("", text: $vmm.movieName.limit(32))
                 .font(.system(size: 12))
                 .textFieldStyle(MovieNameAddStyle(frameWidth: frameWidth,
                                                   frameHeight: frameHeight))
                 .frame(width: UIScreen.main.bounds.width * 0.44, height: UIScreen.main.bounds.height * 0.04)
             
-            Text(textEmpty ? "Empty" : TextHelper.TextField.movieName.rawValue.locale())
+            Text(TextHelper.TextField.movieName.rawValue.locale())
                 .font(.footnote)
                 .fontWeight(.medium)
                 .foregroundColor(Color(ColorHelper.customRed.rawValue))
-                .opacity(tabbedTextField == true || movieField.count > 0 ? 0 : 1)
+                .opacity(vmm.tabbedTextField == true || vmm.movieName.count > 0 ? 0 : 1)
                 .multilineTextAlignment(.center)
             }
         .onTapGesture {
-            tabbedTextField.toggle()
+            vmm.tabbedTextField.toggle()
         }
         .frame(width: UIScreen.main.bounds.width * 0.44, height: UIScreen.main.bounds.height * 0.05)
     }
@@ -48,7 +44,7 @@ struct MovieNameAddField_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             ViewsBackground()
-            MovieNameAddField(movieField: .constant(""), frameWidth: UIScreen.main.bounds.width * 0.5, frameHeight: UIScreen.main.bounds.height * 0.05)
+            MovieNameAddField(frameWidth: UIScreen.main.bounds.width * 0.5, frameHeight: UIScreen.main.bounds.height * 0.05)
         }
     }
 }

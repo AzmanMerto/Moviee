@@ -11,7 +11,6 @@ import UIKit
 
 class DataManager: ObservableObject {
     // Responsible for preparing a model
-    
     let persistentContainer : NSPersistentContainer
     
     init() {

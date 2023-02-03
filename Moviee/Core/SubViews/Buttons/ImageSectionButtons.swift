@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct ImageSectionButtons: View {
-    @State var takePhoto = false
-    @State var addImageGallery = false
     
+    @StateObject var vmm : ViewModelManager = .init(UIImage())
+
     @Binding var image : UIImage
+    
     var body: some View {
         ZStack {
             Color(ColorHelper.customDark.rawValue)
                 .ignoresSafeArea()
             ZStack {
+                
+                /// background
                 RoundedRectangle(cornerRadius: 40)
                     .stroke(Color(ColorHelper.customOrange.rawValue),lineWidth: 3)
                     .background {
@@ -25,30 +28,37 @@ struct ImageSectionButtons: View {
                     }
                 
                 VStack(spacing: 30) {
-                    ImagePickerButton(image: ImageHelper.Icons.camera.rawValue, text: TextHelper.Button.takePhoto.rawValue) {
-                        takePhoto.toggle()
+                    
+                    /// Take photo
+                    ImagePickerButton(image: ImageHelper.Icons.camera.rawValue,
+                                      text: TextHelper.Button.takePhoto.rawValue) {
+                        vmm.takePhoto.toggle()
                     }
-                    .sheet(isPresented: $takePhoto) {
-                        ImagePickerManager(sourceType: .camera,
+                    .sheet(isPresented: $vmm.takePhoto) {
+                        ImagePickerManager(sourceType:.camera ,
                                            selectedImage: $image)
                         .fixedSize()
                     }
-                        ImagePickerButton(image: ImageHelper.Icons.gallery.rawValue,
-                                          text: TextHelper.Button.addImageGallery.rawValue) {
-                            addImageGallery.toggle()
-                        }
-                        .sheet(isPresented: $addImageGallery) {
-                            ImagePickerManager(sourceType: .photoLibrary, selectedImage: $image)
-                        }
+                    
+                    /// Add from gallery
+                    ImagePickerButton(image: ImageHelper.Icons.gallery.rawValue,
+                                      text: TextHelper.Button.addImageGallery.rawValue) {
+                        vmm.addImageGallery.toggle()
+                        print("Item Selected from gallery \(image)")
+                    }
+                    .sheet(isPresented: $vmm.addImageGallery) {
+                        ImagePickerManager(sourceType: .photoLibrary,
+                                           selectedImage: $image )
+                    }
                     
                     
-
+                    
                 }
             }
             .frame(width: UIScreen.main.bounds.width * 0.9 ,
                    height: UIScreen.main.bounds.height * 0.25)
         }
- 
+        
     }
 }
 

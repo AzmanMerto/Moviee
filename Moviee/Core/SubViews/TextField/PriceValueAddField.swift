@@ -10,26 +10,21 @@ import SwiftUI
 struct PriceValueAddField: View {
     
     /// String value
-    @Binding var priceField : String
+    @StateObject var vmm : ViewModelManager = .init(UIImage())
     
-    /// if pressed field its gonna be activated
-    @State var tabbedTextField : Bool = false
-
-    /// isPressed checking boolean
-    @State var PriceTextEmpty = false
     
     /// For responsive view
     var frameWidth : CGFloat
     var frameHeight : CGFloat
     var body: some View {
             ZStack {
-                TextField("", text: $priceField.limit(3))
+                TextField("", text: $vmm.moviePrice.limit(3))
                     .textFieldStyle(MoneyValueAddStyle(frameWidth: frameWidth,
                                                        frameHeight: frameHeight))
                     .keyboardType(.numberPad)
                     .frame(width: UIScreen.main.bounds.width * 0.144,height: UIScreen.main.bounds.height * 0.05)
                     .onTapGesture {
-                        tabbedTextField.toggle()
+                        vmm.tabbedTextField.toggle()
                     }
                 
                 HStack {
@@ -37,7 +32,7 @@ struct PriceValueAddField: View {
                     Text(TextHelper.TextField.price.rawValue.locale())
                         .foregroundColor(Color(ColorHelper.customGreen.rawValue))
                         .font(.caption2)
-                        .opacity(tabbedTextField == true || priceField.count > 0 ? 0 : 1)
+                        .opacity(vmm.tabbedTextField == true || vmm.moviePrice.count > 0 ? 0 : 1)
                     
                     Image(systemName: ImageHelper.Icons.dollar.rawValue)
                         .foregroundColor(Color(ColorHelper.customGreen.rawValue))
@@ -52,7 +47,7 @@ struct MoneyValueAddField_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             ViewsBackground()
-            PriceValueAddField(priceField: .constant(""), frameWidth: UIScreen.main.bounds.width * 0.17, frameHeight: UIScreen.main.bounds.height * 0.05)
+            PriceValueAddField(frameWidth: UIScreen.main.bounds.width * 0.17, frameHeight: UIScreen.main.bounds.height * 0.05)
         }
     }
 }
